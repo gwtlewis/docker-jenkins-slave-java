@@ -6,10 +6,13 @@ FROM 192.168.31.163:5000/jenkinsci/slave:3.20-1
 USER root
 RUN rm -f /etc/apt/sources.list
 COPY sources.list /etc/apt/sources.list
-RUN apt-get update && \
-    apt-get upgrade && \
-    apt-get dist-upgrade && \
+RUN apt-get clean
+RUN cd /var/lib/apt && \
+    mv lists lists.old && \
+    mkdir -p lists/partial && \
     apt-get clean
+RUN apt-get update && \
+    apt-get upgrade
 RUN apt-get install -y openssh-client \
                        openssh-server
 RUN mkdir /var/run/sshd
