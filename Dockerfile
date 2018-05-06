@@ -6,7 +6,12 @@ FROM 192.168.31.163:5000/jenkinsci/slave:3.20-1
 USER root
 RUN rm -f /etc/apt/sources.list
 COPY sources.list /etc/apt/sources.list
-RUN apt-get update && apt-get install -y openssh-server
+RUN apt-get update && \
+    apt-get upgrade && \
+    apt-get dist-upgrade && \
+    apt-get clean
+RUN apt-get install -y openssh-client \
+                       openssh-server
 RUN mkdir /var/run/sshd
 RUN echo 'root:screencast' | chpasswd
 RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
