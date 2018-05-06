@@ -7,7 +7,7 @@ RUN mkdir /home/jenkins/.ssh && \
 
 COPY jenkins_master_public_key /home/jenkins/.ssh/jenkins_master_public_key
 
-RUN echo /home/jenkins/.ssh/jenkins_master_public_key > /home/jenkins/.ssh/authorized_keys && \
+RUN cat /home/jenkins/.ssh/jenkins_master_public_key > /home/jenkins/.ssh/authorized_keys && \
     chmod 600 /home/jenkins/.ssh/authorized_keys
 
 EXPOSE 22
