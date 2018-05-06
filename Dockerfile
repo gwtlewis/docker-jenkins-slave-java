@@ -1,6 +1,6 @@
 # docker-jenkins-slave
 
-FROM 192.168.31.27:5000/jenkinsci/slave:3.20-1
+FROM 192.168.31.163:5000/jenkinsci/slave:3.20-1
 
 RUN mkdir /home/jenkins/.ssh && \
     chmod 700 /home/jenkins/.ssh
